@@ -1,0 +1,441 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css">
+<section id="main-content" class="mndshbord requisionbgg ">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="hdr">
+                    Requisition
+                </h1>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="tab_wrapper first_tab">
+                                <ul class="tab_list">
+                                    <li class="active">Library Requisition</li>
+                                </ul>
+                                <div class="content_wrapper">
+                                    <div class="tab_content active">
+                                        <div class="adv-table">
+                                            <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Vendor Name</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Requisition No.</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Requisition Date</th>
+                                                            <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 244px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                                        {% for req in re_queryset %}
+                                                        <tr class="gradeA odd">
+                                                            <td class="sorting_1">{{req.id}}</td>
+                                                            <td>{{ req.vendor.name }}</td>
+                                                            <td>{{ req.requisition_num }}</td>
+                                                            <td>{{ req.date }}</td>
+                                                            <td>
+                                                                <a href="#" class="social-icon">
+                                                                    <i class="fa fa-pencil editt"></i>
+                                                                    <div class="tooltip">Edit</div>
+                                                                </a>
+                                                                <a href="#" class="social-icon">
+                                                                    <i class="fa fa-trash-o deletee"></i>
+                                                                    <div class="tooltip">Delete</div>
+                                                                </a>
+                                                                <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal22">
+                                                                    <i class="fa fa-fw fa-plus"></i>
+                                                                    <div class="tooltip">Items Details</div>
+                                                                </a>
+                                                                <div id="myModal22" class="modal fade" role="dialog" style="display: none;">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <!-- <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                                                                <h4 class="modal-title"><span>Vendor Name: <b></b></span><span> Requisition No: <b></b></span><span>Requisition Date: <b></b></span></h4>
+                                                                            </div> -->
+                                                                            <div class="modal-body">
+                                                                                <fieldset class="scheduler-border mngbtm40">
+                                                                                    <legend class="scheduler-border" style="margin: 10px; color: #625c55;"><span id="lblModalBookbankAllocation"></span> Add Item Details</legend>
+                                                                                    <form class="form-horizontal bv-form addschedulebgg" role="form" action="{% url 'items_add_requisition' pk=req.id %}" method="POST">
+                                                                                        {% csrf_token %}
+                                                                                        <div class="row">
+                                                                                            <div class="col-sm-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="col-sm-3 control-label">Book Name:</label>
+                                                                                                    <div class="col-sm-9">
+                                                                                                        <input type="text" class="form-control" name="book_name" placeholder="Book Name">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="col-sm-3 control-label">Title:</label>
+                                                                                                    <div class="col-sm-9">
+                                                                                                        <select class="form-control sec" name="title">
+                                                                                                            {% for t in t_queryset %}
+                                                                                                            <option value="{{t.id}}">{{t.name}}</option>
+                                                                                                            {% endfor %}
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="col-sm-3 control-label">Publisher:</label>
+                                                                                                    <div class="col-sm-9">
+                                                                                                        <select class="form-control sec" name="publisher">
+                                                                                                            {% for t in pub_queryset %}
+                                                                                                            <option value="{{t.id}}">{{t.name}}</option>
+                                                                                                            {% endfor %}
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="col-sm-3 control-label">Author1:</label>
+                                                                                                    <div class="col-sm-9">
+                                                                                                        <select class="form-control sec" name="author_1">
+                                                                                                            {% for t in au1_queryset %}
+                                                                                                            <option value="{{t.id}}">{{t.name}}</option>
+                                                                                                            {% endfor %}
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="control-label col-sm-3">Author2:</label>
+                                                                                                    <div class="col-sm-9">
+                                                                                                        <select class="form-control sec" name="author_2">
+                                                                                                            {% for t in au2_queryset %}
+                                                                                                            <option value="{{t.id}}">{{t.name}}</option>
+                                                                                                            {% endfor %}
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row mngtop30">
+                                                                                            <div class="col-sm-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="control-label col-sm-3">Author3:</label>
+                                                                                                    <div class="col-sm-9">
+                                                                                                        <select class="form-control sec" name="author_3">
+                                                                                                            {% for t in au3_queryset %}
+                                                                                                            <option value="{{t.id}}">{{t.name}}</option>
+                                                                                                            {% endfor %}
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-2">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="control-label col-sm-3">Edition:</label>
+                                                                                                    <div class="col-sm-9">
+                                                                                                        <select class="form-control sec" name="edition">
+                                                                                                            {% for t in ed_queryset %}
+                                                                                                            <option value="{{t.id}}">{{t.name}}</option>
+                                                                                                            {% endfor %}
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                         
+                                                                                            <div class="col-sm-2">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="control-label col-sm-6">Binding Type:</label>
+                                                                                                    <div class="col-sm-6">
+                                                                                                        <select class="form-control sec" name="bindingtype">
+                                                                                                            {% for t in bin_queryset %}
+                                                                                                            <option value="{{t.id}}">{{t.name}}</option>
+                                                                                                            {% endfor %}
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-2 col-xs-12">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="control-label col-sm-4">Language:</label>
+                                                                                                    <div class="col-sm-8">
+                                                                                                        <select class="form-control sec" name="language">
+                                                                                                            {% for t in la_queryset %}
+                                                                                                            <option value="{{t.id}}">{{t.name}}</option>
+                                                                                                            {% endfor %}
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row mngtop30">                                                                  
+                                                                                            <div class="col-sm-3 col-xs-12">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="control-label col-sm-5">Publication Year:</label>
+                                                                                                    <div class="col-sm-7">
+                                                                                                        <input type="date" class="form-control" name="pubyear" placeholder="Publication Year">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-3 col-xs-12">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="control-label col-sm-5">No. Of Copies:</label>
+                                                                                                    <div class="col-sm-7">
+                                                                                                        <input type="text" class="form-control" name="copies" placeholder="No. Of Copies">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-3 col-xs-12">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="control-label col-sm-5">Author:</label>
+                                                                                                    <div class="col-sm-7">
+                                                                                                        <input type="text" class="form-control" name="author6" placeholder="Author">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-3 col-xs-12">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="control-label col-sm-5">Author:</label>
+                                                                                                    <div class="col-sm-7">
+                                                                                                        <input type="text" class="form-control" name="author7" placeholder="Author">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-3 col-xs-12">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="control-label col-sm-5">Author:</label>
+                                                                                                    <div class="col-sm-7">
+                                                                                                        <input type="text" class="form-control" name="author8" placeholder="Author">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-3 col-xs-12">
+                                                                                                <div class="form-group">
+                                                                                                    <label class="control-label col-sm-5">Publisher:</label>
+                                                                                                    <div class="col-sm-7">
+                                                                                                        <input type="text" class="form-control" name="publisher1" placeholder="No. Of Copies">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-12 mngtop30 text-right">
+                                                                                            <button type="submit" class="btn btn-primary schedulebtn"><i class="fa fa-plus"></i> Add</button>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </fieldset> 
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                                <div class="row-fluid">
+                                                    <div class="span6">
+                                                        <div class="dataTables_filter" id="dynamic-table_filter"><label>Search: <input type="text" class="form-control" aria-controls="dynamic-table"></label></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row-fluid">
+                                                    <div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <button id="editable-sample_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                                    <i class="fa fa-plus pluss"></i> Add New
+                                                </button>
+                                            </div>
+                                            <div id="myModal" class="modal fade" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">ADD RECORDS</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" novalidate="novalidate" method="POST" action="{% url 'requisiton_create' %}">
+                                                                {% csrf_token %}
+                                                                <div class="form-group has-feedback">
+                                                                    <label for="" class="col-sm-2 control-label">Vendor Name:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <select class="form-control" name="vendernm">
+                                                                            {% for vend in v_queryset %}
+                                                                            <option value="{{ vend.id }}">{{ vend.name }}</option>
+                                                                            {% endfor %}
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label for="" class="col-sm-2 control-label">Requisition No:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="reqno">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label for="" class="col-sm-2 control-label">Requisition Date:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="date" class="form-control" name="reqdate" id="date_obj">
+                                                                    </div>
+                                                                </div>                                                                
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-save"></i> Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab_content">
+                                        <div class="adv-table">
+                                            <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Subject Name</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Item Category</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Title</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Publisher Name</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Author-1</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Author-2</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Author-3</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Edition</th>
+                                                            <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 184px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                                        <tr class="gradeA odd">
+                                                            <td class="sorting_1">1</td>
+                                                            <td>STUDENT</td>
+                                                            <td>KANAK KUMARI GUPTA(EE166625)</td>
+                                                            <td>signals and systems</td>
+                                                            <td>phi</td>
+                                                            <td>openham</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>15th</td>
+                                                            <td>
+                                                                <a href="#" class="social-icon">
+                                                                    <i class="fa fa-pencil editt"></i>
+                                                                    <div class="tooltip">Edit</div>
+                                                                </a>
+                                                                <a href="#" class="social-icon">
+                                                                    <i class="fa fa-trash-o deletee"></i>
+                                                                    <div class="tooltip">Delete</div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="row-fluid">
+                                                    <div class="span6">
+                                                        <div class="dataTables_filter" id="dynamic-table_filter"><label>Search: <input type="text" class="form-control" aria-controls="dynamic-table"></label></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row-fluid">
+                                                    <div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <button id="editable-sample_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+                                                    <i class="fa fa-plus pluss"></i> Add New
+                                                </button>
+                                            </div>
+                                            <div id="myModal1" class="modal fade" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">ADD RECORDS</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" novalidate="novalidate">
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Subject Name:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="txtVendorName">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Item Category:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <select class="form-control" name="vendernm">
+                                                                            <option value="">Select Item Category</option>
+                                                                            <option value="">Book</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Title:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="txtVendorName">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Publisher Name:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="txtVendorName">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Author1:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="txtVendorName">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Author2:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="txtVendorName">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Author3:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="txtVendorName">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Book Edition:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="txtVendorName">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-save"></i> Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{% static 'js/datepicker.js' %}"></script>
+<script>
+$( function() {
+        $( "#date_obj" ).datepicker();
+        $( "#date_obj" ).attr('autocomplete','off');
+} );
+</script>
+{% endblock content %}

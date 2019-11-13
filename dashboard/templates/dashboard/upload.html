@@ -1,0 +1,42 @@
+﻿{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<section id="main-content" class="mndshbord">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="hdr">
+                    Setup Data Upload
+                </h1>
+                <div class="panel">
+                    <div class="panel-body">
+                        <fieldset style="width:100%;margin-top:7px;">
+                            <legend class="legendhdd">Browse Excel To Upload Data</legend>
+                            <ul class="lst">
+                                <li>
+                                    Step 1. Download:
+                                    <button type="button" class="btn btn-primary btn-xs dwnbtn" onclick="DownloadExcelFromOldErp();">Download</button>
+                                </li>
+                                <li>
+                                    Step 2. Fill the data in the downloaded excel file.
+                                </li>
+                                <li>
+                                    Step 3. Browse and upload.
+                                </li>
+                            </ul>
+                            <div class="form-group row">
+                                <div class="col-sm-2">
+                                    <input type="file" id="fileUpload" name="fileUpload" class="form-control fileupld">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="button" id="btnValidatePreview" name="btnValidatePreview" value="Validate &amp; Preview" style="display: inline" class="btn btn-success custombtn previewbtn">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

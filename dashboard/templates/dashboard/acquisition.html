@@ -1,0 +1,215 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css">
+<section id="main-content" class="mndshbord isseuretrn">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="hdr">
+                    Item Acquisition
+                </h1>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="tab_wrapper first_tab">
+                                <div class="tab_content">
+                                    <div class="usdidd clearfix">
+                                        <div class="col-sm-8 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-4 text-right">Requisition Number</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" name="reqnum" id="req_name" placeholder="Requisition Number">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <button type="submit" id="req_submit_btn" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="adv-table" id="showing_table" style="display: none;">
+                                        <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                            <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Book</th>
+                                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Publisher</th>
+                                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Author</th>
+                                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">No. Of Copies</th>
+                                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody role="alert" aria-live="polite" aria-relevant="all" id="tbody1">
+                                                    <tr class="gradeA odd">
+                                                        <td class="sorting_1">1</td>
+                                                        <td>B6225</td>
+                                                        <td>Data Structures using C</td>
+                                                        <td>PHI</td>
+                                                        <td>50</td>                                                        
+                                                        <td>
+                                                            <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal22">
+                                                                <i class="fa fa-fw fa-plus"></i>
+                                                                <div class="tooltip">Items Details</div>
+                                                            </a>
+                                                            <div id="myModal22" class="modal fade" role="dialog" style="display: none;">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                                                            <h4 class="modal-title"><span>Vendor Name: <b></b></span><span> Requisition No: <b></b></span><span>Requisition Date: <b></b></span></h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="modal-body">                                                                                        
+                                                                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                                                                    <thead>
+                                                                                        <tr role="row">
+                                                                                            <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Book name</th>
+                                                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Book Number</th>
+                                                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Accn Number</th>
+                                                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Barcode</th>
+                                                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Available</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody role="alert" aria-live="polite" aria-relevant="all" >
+                                                                                            
+                                                                                    <div id="myModal22" class="modal fade" role="dialog">
+                                                                                            <!-- style="display: none;" -->
+                                                                                        <div class="modal-dialog">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                                                                                    <h4 class="modal-title"><span>Add The Books To Library</span></h4>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    <div class="modal-body">                            
+                                                                                                        <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                                                                                            <thead>
+                                                                                                                <tr role="row">
+                                                                                                                    <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                                                                                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Book name</th>
+                                                                                                                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Book Number</th>
+                                                                                                                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Accn Number</th>
+                                                                                                                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Barcode</th>
+                                                                                                                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Available</th>
+                                                                                                                </tr>
+                                                                                                            </thead>
+                                                                                                            <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                                                                                                <form method="post" id="datathistable">
+                                                                                                                    
+                                                                                                                    <tr class="gradeA odd">
+                                                                                                                        <td class="sorting_1">1</td>
+                                                                                                                        <td><input type="text" class="form-control" name="" id="" value="{{num_loop}}"></td>
+                                                                                                                        <td><input type="text" class="form-control" name="" id="" value="{{num_loop}}"></td>
+                                                                                                                        <td><input type="text" class="form-control" name="" id="" value="{{num_loop}}"></td>
+                                                                                                                        <td><input type="text" class="form-control" name="" id="" value="{{num_loop}}"></td>
+                                                                                                                        <td><input type="text" class="form-control" name="" id="" value="1"></td>
+                                                                                                                    </tr> 
+                                                                                                                    
+                                                                                                            </tbody>
+                                                                                                        </table>
+                                                                                                            <div class="col-sm-12 mngtop20 text-right">
+                                                                                                                <button type="submit" class="btn btn-primary schedulebtn"><i class="fa fa-plus"></i> Add</button>
+                                                                                                            </div>
+                                                                                                        </form>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                           
+                                                                            
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    function getCookie(c_name) {
+    if (document.cookie.length > 0)
+    {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1)
+        {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) c_end = document.cookie.length;
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return "";
+}
+    $(function(){
+        $.ajaxSetup({
+            headers:{"X-CSRFToken":getCookie('csrftoken')}
+        });
+    });
+
+    $("#req_submit_btn").on('click', function(event){
+        event.preventDefault();
+        $("#showing_table").show();
+        var req_number=$("#req_name").val();        
+        console.log(req_number);
+        $.ajax({
+            url :'/load_books/',
+            data :{
+                'req_number':req_number,
+            },
+            success:function(data){
+                var tableString = "";
+                
+                if(data.main_obj_list.length === 0) {
+                    tableString = "<tr><td></td><td>No Data available.</td><td></td><td></td></tr>";
+                }
+                else{
+                    var j=0;
+                    var ids ="";
+                    for(var i in data.main_obj_list)
+                    {
+                        console.log("the num:"+data.main_obj_list[i].no_of_copies);
+                        tableString += "<tr><td>" + i + "</td>";
+                        tableString += "<td id='book"+data.main_obj_list[i].no_of_copies+"'>" + data.main_obj_list[i].book_name + "</td>";
+                        tableString += "<td>" + data.main_obj_list[i].publisher + "</td>";
+                        tableString += "<td>" + data.main_obj_list[i].author1+','+ data.main_obj_list[i].author2+','+data.main_obj_list[i].author3  + "</td>";
+                        tableString += "<td>" + data.main_obj_list[i].no_of_copies + "</td>";
+                        tableString += "<td><button class='btn btn-info btn-sm' onclick='addbookstolibrary("+data.main_obj_list[i].no_of_copies+")' data-toggle='modal' data-target='#myModal22'>\
+                        <i class='fa fa-fw fa-plus'></i><div class='tooltip'>Items Details</div></button>";                        
+                        tableString += "</td></tr>";                        
+                    }
+                }
+                $("#tbody1").html(tableString);
+            },
+        });
+    });
+    function addbookstolibrary(id)
+    {
+        var req_number=$("#req_name").val(); 
+        console.log("requisition number is:"+req_number);
+        var no_of_times = id;
+        if (req_number!=""){
+                window.location.href="http://127.0.0.1:8000/acquisition_form/"+no_of_times+"?req_number="+req_number;
+            }
+            else
+               alert('Oops.!!');
+        // window.open('http://127.0.0.1:8000/acquisition_form/'+no_of_times?, '_blank');
+    }
+</script>
+
+{% endblock content %}

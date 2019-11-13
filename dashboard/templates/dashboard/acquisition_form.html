@@ -1,0 +1,84 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<div id="geturlvalue">
+        <!-- style="display: none;" -->
+<div class="panel">
+        <div class="panel-body">
+            <div class="col-sm-12 col-xs-12">
+                <div class="tab_wrapper first_tab">
+                    <div class="tab_content">
+    
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title"><span>Add The Books To Library</span></h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">                            
+                    <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Book name</th>
+                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Book Number</th>
+                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Accn Number</th>
+                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Barcode</th>
+                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Available</th>
+                            </tr>
+                        </thead>
+                        <tbody role="alert" aria-live="polite" aria-relevant="all"  id="datathistable">
+                            <form method="post" action="{% url 'create_books' %}" >
+                                {% csrf_token %}
+                                {% for i in num_loop %}
+                                <tr class="gradeA odd">
+                                    <td class="sorting_1">{{ i }}</td>
+                                    <td><input type="text" class="form-control" name="" id="" value="{{i}}"></td>
+                                    <td><input type="text" class="form-control" name="" id="" value="{{i}}"></td>
+                                    <td><input type="text" class="form-control" name="" id="" value="{{i}}"></td>
+                                    <td><input type="text" class="form-control" name="" id="" value="{{i}}"></td>
+                                    <td><input type="text" class="form-control" name="" id="" value="1"></td>
+                                </tr> 
+                                {% endfor %}                                
+                        </tbody>
+                    </table>
+                        <div class="col-sm-12 mngtop20 text-right">
+                            <button type="submit" class="btn btn-primary schedulebtn"><i class="fa fa-plus"></i> Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function(e){ 
+    console.log("window.onload", e, Date.now()); 
+    var urlstring = window.location.href;
+    var url = new URL(urlstring);
+    var req_number = url.searchParams.get('req_number');
+    // var no_of_time = num_loop;
+    // console.log(no_of_time);
+    var no_of_time = document.getElementById('datathistable').rows.length;
+    
+    $.ajax({
+        type:"POST",
+        url : "/get_books_name/",
+        data : {
+            'req_number':req_number,
+            'no_of_time':no_of_time,
+        },
+        success :function(data){
+
+        },
+    });
+
+
+}
+
+    
+
+
+</script>
+{% endblock content %}

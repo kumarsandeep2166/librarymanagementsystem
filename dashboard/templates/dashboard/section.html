@@ -1,0 +1,16 @@
+{% for sec in section_queryset %}
+<tr class="gradeA odd">
+    <td class="sorting_1">{{ sec.id }}</td>
+    <td>{{ sec.name }}</td>
+    <td>
+        <a href="#" class="social-icon">
+            <i class="fa fa-pencil editt"></i>
+            <div class="tooltip">Edit</div>
+        </a>
+        <a href="#" class="social-icon">
+            <i class="fa fa-trash-o deletee"></i>
+            <div class="tooltip">Deletee</div>
+        </a>
+    </td>
+</tr>
+{% endfor %}

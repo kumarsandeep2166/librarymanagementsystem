@@ -1,0 +1,89 @@
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        <div class="leftside-navigation">
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li>
+                    <a href="{% url 'index' %}" class="active">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-tasks"></i>
+                        <span>Library</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-envelope"></i>
+                        <span>Setup </span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="/mastersetup1">Master1</a></li>
+                        <li><a href="/mastersetup2">Master2</a></li>
+                        <li><a href="/mastersetup3">Master3</a></li>
+                        <li><a href="/course_create">Course Create</a></li>
+                        <li><a href="/stream_create">Stream Create</a></li>
+                        <li><a href="/year_sem_create">Batch Create</a></li>
+                    </ul>
+                </li>     
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-envelope"></i>
+                        <span>Student</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="/student_list">Student List</a></li>
+                        <li><a href="/student_create">Student Create</a></li>
+                    </ul>
+                </li> 
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-envelope"></i>
+                        <span>Staff</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="/employee_list">Staff List</a></li>
+                        <li><a href="/employee_create">Staff Create</a></li>
+                    </ul>
+                </li> 
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-envelope"></i>
+                        <span>Assign</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="/entity_type_list">Entity</a></li>
+                        <li><a href="/library_mapping_list">Mapping Entity</a></li>
+                    </ul>
+                </li>   
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-envelope"></i>
+                        <span>Transaction </span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="/requisiton_list">Requisition</a></li>
+                        <li><a href="/manual_stock_entry_create">Library Stock</a></li>
+                        <li><a href="/manual_stock_entry_create">Library Stock Entry</a></li>
+                        <li><a href="/library_book_issue">Issue/Return</a></li>
+                    </ul>
+                </li>    
+                <li>
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Footfall</span>
+                    </a>
+                </li>   
+                <li>
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>     
+            </ul>
+        </div>
+    </div>
+</aside>
+<script src="/static/js/app.min.js"></script>

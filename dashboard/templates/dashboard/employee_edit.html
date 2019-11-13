@@ -1,0 +1,152 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<section id="main-content">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-8 col-sm-8 col-sm-offset-2">
+                <div class="">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <h1 class="hdrcolorbg">
+                                Employee Create
+                            </h1>
+                        </div>
+                        <form role="form" class="frmbgg" action="{% url 'employee_edit' pk=id_of_object.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Title</label>
+                                            <select class="form-control" name="title">
+                                                <option value="">----Select Title----</option>
+                                                <option value="Mr">Mr</option>
+                                                <option value="Miss">Miss</option>
+                                                <option value="Ms">Ms</option>
+                                                <option value="Dr.">Dr.</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-9 col-xs-12">
+                                            <label>Full Name</label>
+                                            <input type="text" class="form-control" name="full_name" placeholder="Full Name" value="{{ id_of_object.full_name }}">
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <label>Department</label>
+                                            <select class="form-control" name="department">
+                                                {% for dept in dept_queryset %}
+                                                <option value="{{dept.id}}">{{ dept.employee_department }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <label>Designation</label>
+                                            <select class="form-control" name="designation">
+                                                {% for dept in desgn_queryset %}
+                                                <option value="{{dept.id}}">{{ dept.employee_designation }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Date of Birth</label>
+                                            <input type="date" class="form-control" placeholder="dob" name="dob">
+                                        </div>
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Addhar No.</label>
+                                            <input type="text" class="form-control" placeholder="Addhar_No" name="aadhar_no" value="{{ id_of_object.aadhar_no }}">
+                                        </div>
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Pan No.</label>
+                                            <input type="text" class="form-control" placeholder="Pan_No" name="pan_no" value="{{ id_of_object.pan_no }}">
+                                        </div>
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Phone Number.</label>
+                                            <input type="text" class="form-control" placeholder="phone" name="phone_number" value="{{ id_of_object.phone_no }}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" placeholder="Email" name="email" value="{{ id_of_object.email }}">
+                                        </div>
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Type of Joining</label>
+                                            <select class="form-control" name="type_of_joining">
+                                                <option value="Contracted">Contracted</option>
+                                                <option value="Part Time">Part Time</option>
+                                                <option value="Permanent">Permanent</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12"><label>Qualification</label>
+                                            <table class="table table-bordered table-striped cf">
+                                                <thead class="cf">
+                                                    <tr class="dth">
+                                                        <th>Exam</th>
+                                                        <th>Stream</th>
+                                                        <th>School/College</th>
+                                                        <th>Board/University</th>
+                                                        <th>Full Mark</th>
+                                                        <th>Secured Mark</th>
+                                                        <th>% / CGPA</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>10th</td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="10thstream" value="{{ id_of_object.tenth_subjects }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder=""  name="10thschool" value="{{ id_of_object.tenth_school }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder=""  name="10thboard" value="{{ id_of_object.tenth_board }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="10thfullmark" value="{{ id_of_object.tenth_full_mark }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="10thsecuredmark" value="{{ id_of_object.tenth_secured_mark }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="10thcg" value="{{ id_of_object.tenth_percentage }}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>+2</td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thstream" value="{{ id_of_object.twelth_stream }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thschool" value="{{ id_of_object.twelth_college }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thboard" value="{{ id_of_object.twelth_board }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thfullmark" value="{{ id_of_object.twelth_full_mark }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thsecuredmark" value="{{ id_of_object.twelth_secured_mark }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thcg" value="{{ id_of_object.tewlth_percentage }}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Graduate</td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degstream" value="{{ id_of_object.degree_stream }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degschool" value="{{ id_of_object.degree_college }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degboard" value="{{ id_of_object.degree_university }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degfullmark" value="{{ id_of_object.degree_full_mark }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degsecuremark" value="{{ id_of_object.degree_secured_mark }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degcg" value="{{ id_of_object.degree_percentage }}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Post Graduate</td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegstream" value="{{ id_of_object.postdegree_stream }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegschool" value="{{ id_of_object.postdegree_college }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegboard" value="{{ id_of_object.postdegree_university }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegfullmark" value="{{ id_of_object.postdegree_full_mark }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegsecuremark" value="{{ id_of_object.postdegree_secured_mark }}"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegcg" value="{{ id_of_object.postdegree_percentage }}"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                            </div>
+                            <button type="submit" class="btn btn-info cancel">Cancel</button>
+                            <button type="submit" class="btn btn-info save">Save & Proceed</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

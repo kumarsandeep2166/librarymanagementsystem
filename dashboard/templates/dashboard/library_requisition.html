@@ -1,0 +1,313 @@
+﻿{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<section id="main-content" class="mndshbord requisionbgg">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="hdr">
+                    Item Requisition
+                </h1>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="adv-table">
+                                <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Session</th>
+                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Semester Type</th>
+                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Store - Section - Item Category</th>
+                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Entity Type</th>
+                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Issue Type</th>
+                                                <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width:284px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                            <tr class="gradeA odd">
+                                                <td class="sorting_1">1</td>
+                                                <td>2018-19</td>
+                                                <td>2018-19 EVEN SEMESTER</td>
+                                                <td>BOOKBANK - Text - Book</td>
+                                                <td>Student</td>
+                                                <td>Half Yearly</td>
+                                                <td>
+                                                    <a href="#" class="social-icon">
+                                                        <i class="fa fa-pencil editt"></i>
+                                                        <div class="tooltip">Edit</div>
+                                                    </a>
+                                                    <a href="#" class="social-icon">
+                                                        <i class="fa fa-trash-o deletee"></i>
+                                                        <div class="tooltip">Deletee</div>
+                                                    </a>
+                                                    <button type="button" class="btn btn-success btn-sm schedulebtn" title="Add" data-toggle="modal" data-target="#myModal11">
+                                                        <i class="fa fa-fw fa-plus"></i>Schedule
+                                                    </button>
+                                                    <div id="myModal11" class="modal fade" role="dialog">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title"><span>SESSION: 2018-19</span><span>ISSUE TYPE: HALF YEARLY</span><span>STORE-SECTION-ITEM CATEGORY: BOOKBANK - TEXT - BOOK</span><span>ENTITY TYPE: STUDENT</span><span>SEM TYPE :2018-19 EVEN SEMESTER</span></h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form class="form-horizontal bv-form addschedulebgg" role="form">
+                                                                        <h2 class="requehd">Library Item Requisition</h2>
+                                                                        <div class="row">
+                                                                            <div class="form-group has-feedback col-sm-4">
+                                                                                <label class="col-sm-4 control-label">Program:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <select class="form-control sec" name="Program">
+                                                                                        <option value="">Select</option>
+                                                                                        <option value="Bachelor in Technology">Bachelor in Technology</option>
+                                                                                        <option value="Master In Technology ">Master In Technology </option>
+                                                                                        <option value="Master in Computer Application">Master in Computer Application</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group has-feedback col-sm-4">
+                                                                                <label class="col-sm-4 control-label">Branch:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <select class="form-control sec" name="Branch">
+                                                                                        <option value="">Select</option>
+                                                                                        <option value="MCA">MCA</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group has-feedback col-sm-4">
+                                                                                <label class="col-sm-4 control-label">Semester:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <select class="form-control sec" name="Semester">
+                                                                                        <option value="">Select</option>
+                                                                                        <option value="94082a82-5ccb-a459-85ff-d4a39f9e6e4e">2</option>
+                                                                                        <option value="417c96fb-5670-9acc-ea8c-8bfc17c22f5b">4</option>
+                                                                                        <option value="de3d6c90-bb2c-1855-8c46-2db8ff724394">6</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mngtop30">
+                                                                            <div class="form-group has-feedback col-sm-4">
+                                                                                <label class="control-label col-sm-4">Issue Date:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012" class="input-append date dpYears">
+                                                                                        <input type="text" readonly="" value="12-02-2012" size="16" class="form-control sec">
+                                                                                        <span class="input-group-btn add-on">
+                                                                                            <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group has-feedback col-sm-4">
+                                                                                <label class="control-label col-sm-4">Choice Start:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012" class="input-append date dpYears">
+                                                                                        <input type="text" readonly="" value="12-02-2012" size="16" class="form-control sec">
+                                                                                        <span class="input-group-btn add-on">
+                                                                                            <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group has-feedback col-sm-4">
+                                                                                <label class="control-label col-sm-4">Choice End:</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012" class="input-append date dpYears">
+                                                                                        <input type="text" readonly="" value="12-02-2012" size="16" class="form-control sec">
+                                                                                        <span class="input-group-btn add-on">
+                                                                                            <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mngtop30 text-right">
+                                                                            <button type="submit" class="btn btn-primary schedulebtn"><i class="fa fa-plus"></i> Add Schedule</button>
+                                                                        </div>
+                                                                    </form>
+                                                                    <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                                                        <thead>
+                                                                            <tr role="row">
+                                                                                <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Program</th>
+                                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Branch</th>
+                                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Semester</th>
+                                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Issue Date</th>
+                                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Choice start date</th>
+                                                                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Choice end date</th>
+                                                                                <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width:284px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                                                            <tr class="gradeA odd">
+                                                                                <td class="sorting_1">1</td>
+                                                                                <td>Bachelor in Technology</td>
+                                                                                <td>IT</td>
+                                                                                <td>8</td>
+                                                                                <td>26-12-2018</td>
+                                                                                <td>20-12-2018 00:00</td>
+                                                                                <td>24-12-2018 00:00</td>
+                                                                                <td>
+                                                                                    <a href="#" class="social-icon">
+                                                                                        <i class="fa fa-pencil editt"></i>
+                                                                                        <div class="tooltip">Edit</div>
+                                                                                    </a>
+                                                                                    <a href="#" class="social-icon">
+                                                                                        <i class="fa fa-trash-o deletee"></i>
+                                                                                        <div class="tooltip">Delete</div>
+                                                                                    </a>
+                                                                                    <a href="#" class="social-icon">
+                                                                                        <i class="fa fa-file excel"></i>
+                                                                                        <div class="tooltip">Excel</div>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr class="gradeA odd">
+                                                                                <td class="sorting_1">1</td>
+                                                                                <td>Bachelor in Technology</td>
+                                                                                <td>IT</td>
+                                                                                <td>8</td>
+                                                                                <td>26-12-2018</td>
+                                                                                <td>20-12-2018 00:00</td>
+                                                                                <td>24-12-2018 00:00</td>
+                                                                                <td>
+                                                                                    <a href="#" class="social-icon">
+                                                                                        <i class="fa fa-pencil editt"></i>
+                                                                                        <div class="tooltip">Edit</div>
+                                                                                    </a>
+                                                                                    <a href="#" class="social-icon">
+                                                                                        <i class="fa fa-trash-o deletee"></i>
+                                                                                        <div class="tooltip">Delete</div>
+                                                                                    </a>
+                                                                                    <a href="#" class="social-icon">
+                                                                                        <i class="fa fa-file excel"></i>
+                                                                                        <div class="tooltip">Excel</div>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr class="gradeA odd">
+                                                                                <td class="sorting_1">1</td>
+                                                                                <td>Bachelor in Technology</td>
+                                                                                <td>IT</td>
+                                                                                <td>8</td>
+                                                                                <td>26-12-2018</td>
+                                                                                <td>20-12-2018 00:00</td>
+                                                                                <td>24-12-2018 00:00</td>
+                                                                                <td>
+                                                                                    <a href="#" class="social-icon">
+                                                                                        <i class="fa fa-pencil editt"></i>
+                                                                                        <div class="tooltip">Edit</div>
+                                                                                    </a>
+                                                                                    <a href="#" class="social-icon">
+                                                                                        <i class="fa fa-trash-o deletee"></i>
+                                                                                        <div class="tooltip">Delete</div>
+                                                                                    </a>
+                                                                                    <a href="#" class="social-icon">
+                                                                                        <i class="fa fa-file excel"></i>
+                                                                                        <div class="tooltip">Excel</div>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                    <div class="col-sm-12 col-xs-12">
+                                                                        <div class="row-fluid col-sm-4">
+                                                                            <div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="row-fluid">
+                                        <div class="span6 col-sm-8">
+                                            <div class="dataTables_filter" id="dynamic-table_filter"><label>Search: <input type="text" class="form-control" aria-controls="dynamic-table"></label></div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid col-sm-4">
+                                        <div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-group col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <button id="editable-sample_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                        <i class="fa fa-plus pluss"></i> Add New
+                                    </button>
+                                </div>
+                                <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">ADD RECORDS</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" novalidate="novalidate">
+                                                    <div class="form-group has-feedback">
+                                                        <label for="" class="col-sm-4 control-label">Academic Year:</label>
+                                                        <div class="col-sm-8">
+                                                            <select class="form-control" name="txtCountry">
+                                                                <option value="">Select</option>
+                                                                <option value="2019-20">2019-20</option>
+                                                                <option value="2018-19">2018-19</option>
+                                                                <option value="2017-18">2017-18</option>
+                                                                <option value="2016-17">2016-17</option>
+                                                                <option value="2015-16">2015-16</option>
+                                                                <option value="2014-15">2014-15</option>
+                                                                <option value="2013-14">2013-14</option>
+                                                                <option value="2012-13">2012-13</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group has-feedback">
+                                                        <label for="" class="col-sm-4 control-label">Sem Type:</label>
+                                                        <div class="col-sm-8">
+                                                            <select class="form-control" name="txtCountry">
+                                                                <option value="">Select Semester Type</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group has-feedback">
+                                                        <label for="" class="col-sm-4 control-label">Store - Section - Item Category -Entity Type - Issue Type:</label>
+                                                        <div class="col-sm-8">
+                                                            <select class="form-control" name="cmbState">
+                                                                <option value="">SELECT</option>
+                                                                <option value="">Select Store - Section - Item Category - Entity Type - Issue Type</option>
+                                                                <option value="94082a82-5ccb-a459-85ff-d4a39f9e6e4e">LIBRARY - Text - Book - Employee Non-Teaching - Half Yearly</option>
+                                                                <option value="417c96fb-5670-9acc-ea8c-8bfc17c22f5b">LIBRARY - Text - Book - Student - Nightly</option>
+                                                                <option value="de3d6c90-bb2c-1855-8c46-2db8ff724394">LIBRARY - Text - Book - Department - Department</option>
+                                                                <option value="e9ccbdff-3b46-eac2-8721-3b27902d842a">LIBRARY - Text - Book - Student - Fortnightly</option>
+                                                                <option value="cfb96088-d504-9379-9ce0-84a498129a60">LIBRARY - Text - Book - Employee Teaching - Half Yearly</option>
+                                                                <option value="24b048b8-7e4a-5ff5-7bf2-19a953b2f131">LIBRARY - Text - Book - Employee Teaching - Department</option>
+                                                                <option value="c1b4d2e7-8d9d-b4e7-66d7-bc782e0feda8">LIBRARY - Text - Book - Employee Non-Teaching - Department</option>
+                                                                <option value="bfb42609-7c2d-1b38-2c30-0bed76ed2b32">BOOKBANK - Text - Book - Student - Half Yearly</option>
+                                                                <option value="94ac1d31-d727-ea10-1753-edb3e7e26360">LIBRARY - Text - Book - Student - Reference</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-save"></i> Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

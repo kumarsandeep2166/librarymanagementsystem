@@ -1,0 +1,153 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<section id="main-content">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-8 col-sm-8 col-sm-offset-2">
+                <div class="">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <h1 class="hdrcolorbg">
+                                Employee Create
+                            </h1>
+                        </div>
+                        <form role="form" class="frmbgg" action="{% url 'employee_create' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Title</label>
+                                            <select class="form-control" name="title">
+                                                <option value="">----Select Title----</option>
+                                                <option value="Mr">Mr</option>
+                                                <option value="Miss">Miss</option>
+                                                <option value="Ms">Ms</option>
+                                                <option value="Dr.">Dr.</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-9 col-xs-12">
+                                            <label>Full Name</label>
+                                            <input type="text" class="form-control" name="full_name" placeholder="Full Name">
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <label>Department</label>
+                                            <select class="form-control" name="department">
+                                                {% for dept in dept_queryset %}
+                                                <option value="{{dept.id}}">{{ dept.employee_department }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <label>Designation</label>
+                                            <select class="form-control" name="designation">
+                                                {% for dept in desgn_queryset %}
+                                                <option value="{{dept.id}}">{{ dept.employee_designation }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Date of Birth</label>
+                                            <input type="date" class="form-control" placeholder="dob" name="dob">
+                                        </div>
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Addhar No.</label>
+                                            <input type="text" class="form-control" placeholder="Addhar_No" name="aadhar_no">
+                                        </div>
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Pan No.</label>
+                                            <input type="text" class="form-control" placeholder="Pan_No" name="pan_no">
+                                        </div>
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Phone Number.</label>
+                                            <input type="text" class="form-control" placeholder="phone" name="phone_number">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" placeholder="Email" name="email">
+                                        </div>
+                                        <div class="form-group col-sm-3 col-xs-12">
+                                            <label>Type of Joining</label>
+                                            <select class="form-control" name="type_of_joining">
+                                                <option value="Contracted">Contracted</option>
+                                                <option value="Part Time">Part Time</option>
+                                                <option value="Permanent">Permanent</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12"><label>Qualification</label>
+                                            <table class="table table-bordered table-striped cf">
+                                                <thead class="cf">
+                                                    <tr class="dth">
+                                                        <th>Exam</th>
+                                                        <th>Stream</th>
+                                                        <th>School/College</th>
+                                                        <th>Board/University</th>
+                                                        <th>Full Mark</th>
+                                                        <th>Secured Mark</th>
+                                                        <th>% / CGPA</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>10th</td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="10thstream"></td>
+                                                        <td><input type="text" class="form-control" placeholder=""  name="10thschool"></td>
+                                                        <td><input type="text" class="form-control" placeholder=""  name="10thboard"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="10thfullmark"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="10thsecuredmark"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="10thcg"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>+2</td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thstream"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thschool"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thboard"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thfullmark"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thsecuredmark"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="12thcg"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Graduate</td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degstream"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degschool"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degboard"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degfullmark"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degsecuremark"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="degcg"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Post Graduate</td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegstream"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegschool"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegboard"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegfullmark"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegsecuremark"></td>
+                                                        <td><input type="text" class="form-control" placeholder="" name="pgdegcg"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>                                      
+                                    
+                            </div>
+                            <button type="submit" class="btn btn-info cancel">Cancel</button>
+                            <button type="submit" class="btn btn-info save">Save & Proceed</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

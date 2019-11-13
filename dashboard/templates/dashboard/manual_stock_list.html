@@ -1,0 +1,74 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css">
+<section id="main-content" class="mndshbord requisionbgg ">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="hdr">
+                    Stock List
+                </h1>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="tab_wrapper first_tab">
+                                
+                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Name</th>
+                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Title</th>
+                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Publisher</th>
+                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Book Category</th>
+                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Authors</th>
+                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Barcode</th>
+                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Accn Number</th>
+                                            <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width:284px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                        {% for req in stock_queryset %}
+                                        <tr class="gradeA odd">
+                                            <td class="sorting_1">{{ req.id }}</td>
+                                            <td>{{req.name}}</td>
+                                            <td>{{req.title.name}}</td>
+                                            <td>{{req.publisher.name}}</td>
+                                            <td>{{req.book_category.name}}</td>
+                                            <td>{{req.author1.name}}, {{ req.author2.name }}, {{ req.author3.name }}</td>
+                                            <td>{{req.barcode}}</td>
+                                            <td>{{req.acc_no}}</td>
+                                            <td>
+                                                <a href="{% url 'manual_stock_entry_edit' pk=req.id %}" class="social-icon">
+                                                    <i class="fa fa-pencil editt"></i>
+                                                    <div class="tooltip">Edit</div>
+                                                </a>
+                                                <a href="{% url 'manual_stock_entry_delete' pk=req.id %}" class="social-icon">
+                                                    <i class="fa fa-trash-o deletee"></i>
+                                                    <div class="tooltip">Delete</div>
+                                                </a>
+                                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<script src="{% static 'js/datepicker.js' %}"></script>
+<script>
+$( function() {
+    $( "#date_obj" ).datepicker();
+    $( "#date_obj" ).attr('autocomplete','off');
+} );
+</script>
+{% endblock content %}

@@ -1,0 +1,589 @@
+﻿{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<section id="main-content" class="mndshbord">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="hdr">
+                    Setup
+                </h1>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="tab_wrapper first_tab">
+                                <ul class="tab_list">
+                                    <li class="active">Building</li>
+                                    <li>Floor</li>
+                                    <li>Room</li>
+                                    <li>Rack</li>
+                                    <li>Shelf</li>
+                                </ul>
+                                <div class="content_wrapper">
+                                    <div class="tab_content active">
+                                        <div class="adv-table">
+                                            <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Building name</th>
+                                                            <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 184px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                                        {% for j in biul_queryset %}
+                                                        <tr class="gradeA odd">
+                                                            <td class="sorting_1">{{j.id}}</td>
+                                                            <td>{{j.name}}</td>
+                                                            <td>
+                                                                <a href="#" class="social-icon" data-toggle="modal" data-target="#myModal33">
+                                                                    <i class="fa fa-pencil editt"></i>
+                                                                    <div class="tooltip">Edit</div>
+                                                                </a>
+                                                                <div id="myModal33" class="modal fade modallog" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                <h4 class="modal-title">UPDATE RECORDS</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" novalidate="novalidate" method="POST" action="{% url 'building_edit' pk=j.id %}">
+                                                                                    {% csrf_token %}
+                                                                                    <div class="row">
+                                                                                        <div class="form-group has-feedback col-sm-12">
+                                                                                            <label class="control-label">Building Name:</label>
+                                                                                            <div>
+                                                                                                <input type="text" class="form-control" name="buildingname" value="{{j.name}}">
+                                                                                                {{ buil_form.name }}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <div class="col-sm-12 text-center mngtop30">
+                                                                                                <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-pencil"></i> Update</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="#" class="social-icon">
+                                                                    <i class="fa fa-trash-o deletee"></i>
+                                                                    <div class="tooltip">Delete</div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                                <div class="row-fluid">
+                                                    <div class="span6 col-sm-8">
+                                                        <div class="dataTables_filter" id="dynamic-table_filter"><label>Search: <input type="text" class="form-control" aria-controls="dynamic-table"></label></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row-fluid col-sm-4">
+                                                    <div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <button id="editable-sample_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                                    <i class="fa fa-plus pluss"></i> Add New
+                                                </button>
+                                            </div>
+                                            <div id="myModal" class="modal fade modallog " role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">ADD RECORDS</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" novalidate="novalidate" method="POST" action="/building_create">
+                                                                {% csrf_token %}
+                                                                <div class="form-group has-feedback">
+                                                                    <label for="" class="col-sm-2 control-label">Building Name:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="buildingname">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-save"></i> Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab_content">
+                                        <div class="adv-table">
+                                            <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Floor Name</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Building Name</th>
+                                                            <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 184px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                                        {% for x in floor_queryset %}
+                                                        <tr class="gradeA odd">
+                                                            <td class="sorting_1">{{ x.id }}</td>
+                                                            <td>{{ x.name }}</td>
+                                                            <td>{{ x.building.name }}</td>
+                                                            <td>
+                                                                <a href="#" class="social-icon" data-toggle="modal" data-target="#myModal43">
+                                                                    <i class="fa fa-pencil editt"></i>
+                                                                    <div class="tooltip">Edit</div>
+                                                                </a>
+                                                                <div id="myModal43" class="modal fade modallog" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                <h4 class="modal-title">UPDATE RECORDS</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" novalidate="novalidate" method="POST" action="{% url 'floor_edit' pk=x.pk %}"> 
+                                                                                    {% csrf_token %}
+                                                                                    <div class="row">
+                                                                                        <div class="form-group has-feedback col-sm-12">
+                                                                                            <label class="control-label">Floor Name:</label>
+                                                                                            <div>
+                                                                                                <input type="text" class="form-control" name="fl_name" value="{{x.name}}">
+                                                                                                                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="form-group has-feedback col-sm-12">
+                                                                                            <label class="control-label">Building Name:</label>
+                                                                                            <div>                                                                                                
+                                                                                                <input type="text" class="form-control" name="fl_building" value="{{x.building.id}}" readonly='readonly'>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <div class="col-sm-12 text-center mngtop30">
+                                                                                                <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-pencil"></i> Update</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="#" class="social-icon">
+                                                                    <i class="fa fa-trash-o deletee"></i>
+                                                                    <div class="tooltip">Delete</div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                                <div class="row-fluid">
+                                                    <div class="span6">
+                                                        <div class="dataTables_filter" id="dynamic-table_filter"><label>Search: <input type="text" class="form-control" aria-controls="dynamic-table"></label></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row-fluid">
+                                                    <div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <button id="editable-sample_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal44">
+                                                    <i class="fa fa-plus pluss"></i> Add New
+                                                </button>
+                                            </div>
+                                            <div id="myModal44" class="modal fade modallog " role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">ADD RECORDS</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" method="POST" action="/floor_create" novalidate="novalidate">
+                                                                {% csrf_token %}
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Floor Name:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="floorname">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Building Name:</label>
+                                                                    <div class="col-sm-10">                                                                        
+                                                                        <select name="building" id="" class="form-control" required>
+                                                                            {% for build in biul_queryset %}
+                                                                            <option value="{{ build.id }}">{{ build.name }}</option>
+                                                                            {% endfor %}
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-save"></i> Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab_content">
+                                        <div class="adv-table">
+                                            <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Room Name</th>
+                                                            <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 184px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                                        {% for a in room_queryset %}
+                                                        <tr class="gradeA odd">
+                                                            <td class="sorting_1">{{ a.id }}</td>
+                                                            <td>{{ a.name }}</td>
+                                                            <td>
+                                                                <a href="#" class="social-icon" data-toggle="modal" data-target="#myModal45">
+                                                                    <i class="fa fa-pencil editt"></i>
+                                                                    <div class="tooltip">Edit</div>
+                                                                </a>
+                                                                <div id="myModal45" class="modal fade modallog" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                <h4 class="modal-title">UPDATE RECORDS</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" method="POST" action="{% url 'room_edit' pk=a.pk %}" novalidate="novalidate">
+                                                                                    {% csrf_token %}
+                                                                                    <div class="row">
+                                                                                        <div class="form-group has-feedback col-sm-12">
+                                                                                            <label class="control-label">Room Name:</label>
+                                                                                            <div>
+                                                                                                <input type="text" class="form-control" name="roomname" value="{{a.name}}">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <div class="col-sm-12 text-center mngtop30">
+                                                                                                <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-pencil"></i> Update</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="#" class="social-icon">
+                                                                    <i class="fa fa-trash-o deletee"></i>
+                                                                    <div class="tooltip">Delete</div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                                <div class="row-fluid">
+                                                    <div class="span6">
+                                                        <div class="dataTables_filter" id="dynamic-table_filter"><label>Search: <input type="text" class="form-control" aria-controls="dynamic-table"></label></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row-fluid">
+                                                    <div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <button id="editable-sample_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal46">
+                                                    <i class="fa fa-plus pluss"></i> Add New
+                                                </button>
+                                            </div>
+                                            <div id="myModal46" class="modal fade modallog " role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">ADD RECORDS</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" method="POST" action="/room_create" novalidate="novalidate">
+                                                                {% csrf_token %}
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Room Name:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="roomname">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-save"></i> Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab_content">
+                                        <div class="adv-table">
+                                            <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Rack Name</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Room Name</th>
+                                                            <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 184px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                                        {% for f in rack_queryset %}
+                                                        <tr class="gradeA odd">
+                                                            <td class="sorting_1">{{ f.id }}</td>
+                                                            <td>{{ f.name }}</td>
+                                                            <td>{{ f.room.name }}</td>
+                                                            <td>
+                                                                <a href="#" class="social-icon" data-toggle="modal" data-target="#myModal42">
+                                                                    <i class="fa fa-pencil editt"></i>
+                                                                    <div class="tooltip">Edit</div>
+                                                                </a>
+                                                                <div id="myModal42" class="modal fade modallog" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                <h4 class="modal-title">UPDATE RECORDS</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" method="POST" action="{% url 'rack_edit' pk=f.id %}" novalidate="novalidate">
+                                                                                    {% csrf_token %}
+                                                                                    <div class="row">
+                                                                                        <div class="form-group has-feedback col-sm-12">
+                                                                                            <label class="control-label">Rack Name:</label>
+                                                                                            <div>
+                                                                                                <input type="text" class="form-control" name="rackname" value="{{f.name}}">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="form-group has-feedback col-sm-12">
+                                                                                            <label class="control-label">Room Name:</label>
+                                                                                            <div>
+                                                                                                <input type="text" class="form-control" name="roomname" value="{{f.room.id}}" readonly='readonly'>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <div class="col-sm-12 text-center mngtop30">
+                                                                                                <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-pencil"></i> Update</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="#" class="social-icon">
+                                                                    <i class="fa fa-trash-o deletee"></i>
+                                                                    <div class="tooltip">Delete</div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                                <div class="row-fluid">
+                                                    <div class="span6">
+                                                        <div class="dataTables_filter" id="dynamic-table_filter"><label>Search: <input type="text" class="form-control" aria-controls="dynamic-table"></label></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row-fluid">
+                                                    <div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <button id="editable-sample_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal9">
+                                                    <i class="fa fa-plus pluss"></i> Add New
+                                                </button>
+                                            </div>
+                                            <div id="myModal9" class="modal fade modallog " role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">ADD RECORDS</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" method="POST" action="/rack_create" novalidate="novalidate">
+                                                                {% csrf_token %}
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Rack Name:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="rackname">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Room Name:</label>
+                                                                    <div class="col-sm-10">
+                                                                        
+                                                                        <select name="rackset" id="" class="form-control">
+                                                                            {% for rom in room_queryset %}
+                                                                            <option value="{{ rom.id }}">{{ rom.name }}</option>
+                                                                            {% endfor %}
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-save"></i> Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab_content">
+                                        <div class="adv-table">
+                                            <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Shelf Name</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Rack Name</th>
+                                                            <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 184px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                                        {% for k in shelf_queryset %}
+                                                        <tr class="gradeA odd">
+                                                            <td class="sorting_1">{{ k.id }}</td>
+                                                            <td>{{ k.name }}</td>
+                                                            <td>{{ k.rack.name }}</td>
+                                                            <td>
+                                                                <a href="#" class="social-icon" data-toggle="modal" data-target="#myModal34">
+                                                                    <i class="fa fa-pencil editt"></i>
+                                                                    <div class="tooltip">Edit</div>
+                                                                </a>
+                                                                <div id="myModal34" class="modal fade modallog" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                <h4 class="modal-title">UPDATE RECORDS</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" novalidate="novalidate" method="POST" action="{% url 'shelf_edit' pk=k.id %}">
+                                                                                    {% csrf_token %}
+                                                                                    <div class="row">
+                                                                                        <div class="form-group has-feedback col-sm-12">
+                                                                                            <label class="control-label">Shelf Name:</label>
+                                                                                            <div>
+                                                                                                <input type="text" class="form-control" name="shelfname" value="{{ k.name }}">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="form-group has-feedback col-sm-12">
+                                                                                            <label class="control-label">Rack Name:</label>
+                                                                                            <div>
+                                                                                                <input type="text" class="form-control" name="rackname" value="{{ k.rack.id }}">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <div class="col-sm-12 text-center mngtop30">
+                                                                                                <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-pencil"></i> Update</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="#" class="social-icon">
+                                                                    <i class="fa fa-trash-o deletee"></i>
+                                                                    <div class="tooltip">Delete</div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                                <div class="row-fluid">
+                                                    <div class="span6">
+                                                        <div class="dataTables_filter" id="dynamic-table_filter"><label>Search: <input type="text" class="form-control" aria-controls="dynamic-table"></label></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row-fluid">
+                                                    <div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <button id="editable-sample_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+                                                    <i class="fa fa-plus pluss"></i> Add New
+                                                </button>
+                                            </div>
+                                            <div id="myModal1" class="modal fade modallog " role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">ADD RECORDS</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal bv-form" role="form" id="frmvendorsetup" method="POST" action="/shelf_create" novalidate="novalidate">
+                                                                {% csrf_token %}
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Shelf Name:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="shelf_name">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group has-feedback">
+                                                                    <label class="col-sm-2 control-label">Rack Name:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <select name="shelfset" id="" class="form-control">
+                                                                            {% for sh in rack_queryset %}
+                                                                            <option value="{{ sh.id }}">{{ sh.name }}</option>
+                                                                            {% endfor %}
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-primary" id="addVendor"><i class="fa fa-save"></i> Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

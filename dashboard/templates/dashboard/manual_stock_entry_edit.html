@@ -1,0 +1,222 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css">
+<section id="main-content" class="mndshbord requisionbgg ">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="hdr">
+                    Manual Stock Entry to Library Update
+                </h1>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="tab_wrapper first_tab">
+                            <form class="form-horizontal bv-form addschedulebgg" role="form" action="#" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Book Name:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="book_name" placeholder="Book Name">
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Title:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control sec" name="title">
+                                                {% for t in t_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Publisher:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control sec" name="publisher">
+                                                {% for t in pub_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Author1:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control sec" name="author_1">
+                                                {% for t in au1_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="row mngtop30">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">Author2:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control sec" name="author_2">
+                                                {% for t in au2_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">Author3:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control sec" name="author_3">
+                                                {% for t in au3_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">Edition:</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control sec" name="edition">
+                                                {% for t in ed_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>                             
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">Binding Type:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control sec" name="bindingtype">
+                                                {% for t in bin_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="row mngtop30">
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">Language:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control sec" name="language">
+                                                {% for t in la_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>                                                                  
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">Publication Year:</label>
+                                        <div class="col-sm-8">
+                                            <input type="date" class="form-control" name="pubyear" placeholder="Publication Year">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">No. Of Copies:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="copies" placeholder="No. Of Copies">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">ISBN:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="isbn" placeholder="ISBN number">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mngtop30">
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">Issue Type:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control sec" name="issuetype">
+                                                {% for t in issue_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>                                                                  
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-5">Book Category:</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control sec" name="book_cat">
+                                                {% for t in book_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-5">Subject:</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control sec" name="subject">
+                                                {% for t in sub_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-5">Store:</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control sec" name="store">
+                                                {% for t in sto_queryset %}
+                                                <option value="{{t.id}}">{{t.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 mngtop30 text-right">
+                                <button type="submit" class="btn btn-primary schedulebtn"><i class="fa fa-plus"></i> Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+<script src="{% static 'js/datepicker.js' %}"></script>
+<script>
+    $( function() {
+        $( "#date_obj" ).datepicker();
+        $( "#date_obj" ).attr('autocomplete','off');
+    } );
+</script>
+{% endblock content %}

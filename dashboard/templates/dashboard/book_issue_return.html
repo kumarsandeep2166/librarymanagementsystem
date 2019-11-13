@@ -1,0 +1,479 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<section id="main-content" class="mndshbord isseuretrn">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="hdr">
+                    Item Issue
+                </h1>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="tab_wrapper first_tab">
+                                <ul class="tab_list">
+                                    <li class="active">Issue</li>
+                                    <li>Return</li>
+                                    <li>Status</li>
+                                </ul>
+                                <div class="content_wrapper">
+                                    <div class="tab_content active">
+                                        <div class="usdidd clearfix">
+                                            <div class="col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <form action="{}"></form>
+                                                    <label class="control-label col-sm-2 text-right">User ID:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text"  id="userid" class="form-control" name="txtPages" placeholder="User ID">
+                                                        <button type="button" id="student_button" class="btn btn-warning btn-sm" class="form-control" title="Add" data-toggle="modal" data-target="#myModal22">
+                                                            <i class="fa fa-tasks pluss"></i>submit
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="adv-table">
+                                            <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table1" aria-describedby="dynamic-table_info" style="display: none;">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Accn. No</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Title</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Issue Date</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Expected Return Date</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Return Date</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Fine Amount</th>
+                                                            <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 184px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody role="alert" aria-live="polite" aria-relevant="all" id="book_histrory_data">
+                                                        <!-- <tr class="gradeA odd">
+                                                            <td class="sorting_1">1</td>
+                                                            <td>E186</td>
+                                                            <td>Mosaic Modern English Prose</td>
+                                                            <td>MACMILLAN</td>
+                                                            <td>V.A.SHAHANE</td>
+                                                            <td>Not Available</td>
+                                                            <td>Not Available</td>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-warning btn-sm" title="Add" data-toggle="modal" data-target="#myModal22">
+                                                                    <i class="fa fa-tasks pluss"></i>Issue
+                                                                </button>
+                                                            </td>
+                                                        </tr> -->
+                                                    </tbody>
+                                                </table>
+                                                <div class="row-fluid" style="display: none;" id="accession_num_enter">
+                                                    <div class="span6">
+                                                        <div class="dataTables_filter" id="dynamic-table_filter" >
+                                                            <label>Item Accession No: <input type="text" class="form-control" id="item_accn" aria-controls="dynamic-table"></label>
+                                                        </div>
+                                                        <div class="dataTables_filter" id="dynamic-table_filter" >
+                                                            <label>Item Barcode No: <input type="text" class="form-control" id="item_barcode" aria-controls="dynamic-table"></label>
+                                                        </div>
+                                                        <div class="dataTables_filter" style="margin-top: 38px;margin-left: 10px;">
+                                                            <button type="button" class="btn btn-warning btn-sm" id="issue_btn"  title="Add" data-toggle="modal" data-target="#myModal22">
+                                                                <i class="fa fa-tasks pluss"></i>Search
+                                                            </button>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="adv-table">
+                                                        <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                            <table class="display table table-bordered table-striped dataTable" id="dynamic-table12" aria-describedby="dynamic-table_info" style="display: none;">
+                                                                <thead>
+                                                                    <tr role="row">
+                                                                        <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Accn. No</th>
+                                                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Book Name</th>
+                                                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Book Title</th>
+                                                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Authors</th>
+                                                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Issue Date</th>
+                                                                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Expected Return Date</th>
+                                                                        <th class="hidden-phone sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 184px;" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody role="alert" aria-live="polite" aria-relevant="all" id="book_issue_data">
+                                                                    <!-- <tr class="gradeA odd">
+                                                                        <td class="sorting_1">1</td>
+                                                                        <td>E186</td>
+                                                                        <td>Mosaic Modern English Prose</td>
+                                                                        <td>MACMILLAN</td>
+                                                                        <td>V.A.SHAHANE</td>
+                                                                        <td>Not Available</td>
+                                                                        <td>Not Available</td>
+                                                                        <td>&nbsp;</td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-warning btn-sm" title="Add" data-toggle="modal" data-target="#myModal22">
+                                                                                <i class="fa fa-tasks pluss"></i>Issue
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr> -->
+                                                            </tbody>
+                                                        </table>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab_content">
+                                        <div class="usdidd clearfix">
+                                            <div class="col-sm-8 col-xs-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-2 text-right">Item Accession No:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="txtPages" placeholder="Item Accession No">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="box box-warning">
+                                                    <div class="box-header with-border" style="margin-top: -12px; margin-bottom: 25px; border-bottom: 1px solid #eee; padding: 8px 10px 0; background-color: #6d5133; color: #fff;">
+                                                        <h3 class="box-title htusr">Issued User</h3>
+                                                    </div>
+                                                    <div class="box-body box-profile" style="padding:10px;">
+                                                        <img class="profile-user-img img-responsive img-circle" style="text-align: center;width: 106px;margin: 0 auto;border: 2px solid #ccc;" id="dvProfileImg" src="images/10.jpg">
+                                                        <h3 class="profile-username text-center" id="dvUserName"></h3>
+                                                        <p class="text-muted text-center" id="dvUserId">AMIT  RAJ(180310015)</p>
+                                                        <ul class="list-group list-group-unbordered" style="margin-bottom: -5px;">
+                                                            <li class="list-group-item">
+                                                                <b>Issued Type :</b> <span class="pull-right" id="dvIssueType">Nightly</span>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="list-group list-group-unbordered" style="margin-bottom: -5px;">
+                                                            <li class="list-group-item">
+                                                                <b>Issued On :</b> <span class="pull-right" id="dvIssueDate">31-Oct-2019</span>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="list-group list-group-unbordered" style="margin-bottom: 5px;">
+                                                            <li class="list-group-item">
+                                                                <b>Exp.Returned Date :</b> <span class="pull-right" id="dvExpReturnedDate">01-Nov-2019</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="box box-warning">
+                                                    <div class="box-header with-border" style="margin-top: -12px; margin-bottom: 25px; border-bottom: 1px solid #eee; padding: 8px 10px 0; background-color: #6d5133; color: #fff;">
+                                                        <h3 class="box-title htusr">About Item</h3>
+                                                    </div>
+                                                    <div class="box-body" style="padding: 10px;">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Title</label>
+                                                                    <input type="text" class="form-control" id="fullName" placeholder="The Oxford Guide to Writing &amp; Speaking" disabled>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="eMail">Author1</label>
+                                                                    <input type="email" class="form-control" id="eMail" placeholder="J.SEELY" disabled>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="phone">Author3</label>
+                                                                    <input type="text" class="form-control" id="phone" placeholder="Not Available" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="fullName">Publisher</label>
+                                                                    <input type="text" class="form-control" id="fullName" placeholder="OXFORD UNIVERSITY PRESS" disabled>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="eMail">Author2</label>
+                                                                    <input type="email" class="form-control" id="eMail" placeholder="Not Available" disabled>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="phone">Edition</label>
+                                                                    <input type="text" class="form-control" id="phone" placeholder="Not Available" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div style="text-align: right;">
+                                                                    <button type="button" id="btnReturnBook" name="btnReturnBook" class="btn btn-warning custombtn" style="background-color: #8040AB;border-color: #49007A;"><i class="fa fa-database" aria-hidden="true"></i> Return</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab_content">
+                                        <div class="usdidd clearfix">
+                                            <div class="col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-2 text-right">User ID:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="txtPages" placeholder="User ID">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="adv-table">
+                                            <div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                <table class="display table table-bordered table-striped dataTable" id="dynamic-table" aria-describedby="dynamic-table_info" style="display: none;">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_desc" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 296px;" aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending">SL No.</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Issue Type</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Item Access No</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Title</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Publisher</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Author1</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Issue Date</th>
+                                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" style="width: 397px;" aria-label="Browser: activate to sort column ascending">Expected Return Date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                                        <tr class="gradeA odd">
+                                                            <td class="sorting_1">1</td>
+                                                            <td>Half Yearly</td>
+                                                            <td>B6225</td>
+                                                            <td>Data Structures using C</td>
+                                                            <td>PRENTICE HALL OF INDIA</td>
+                                                            <td>A.M.TANENBAUM</td>
+                                                            <td>29-01-2019</td>
+                                                            <td>28-07-2019</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type='text/javascript'>
+    $(document).ready( function() {
+    var now = new Date();
+    var today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+    $('#issue_date').val(today);
+    });
+</script> 
+<script type="text/javascript">
+$(document).find('.theButton').on('click',function(){
+    var age = $(this).parents('tr:first').find('td:eq(1)').text();
+    console.log(age);
+});
+$('#issue_btn').on('click', function(){
+    var item_accn = $('#item_accn').val();
+    var student_id = $('#userid').val();
+    var item_barcode = $('#item_barcode').val();
+    $.ajax({
+        url:'/find_the_book/',
+        data : {
+            'item_accn':item_accn,
+            'student_id':student_id,
+            'item_barcode':item_barcode,
+        },
+        type : "GET",
+        dataType: 'json',
+        success:function(data){
+            $('#dynamic-table12').show();
+            console.log('data coming to success part');
+            tablestring = "";           
+            console.log('data is coming here to issue part');
+            tablestring += "<tr>";
+            tablestring += "<td>"+data.book_id+"</td>";
+            tablestring += "<td>"+data.item_accn+"</td>";
+            tablestring += "<td>"+data.book_name+"</td>";
+            tablestring += "<td>"+data.book_title+"</td>";
+            tablestring += "<td>"+data.book_author1+","+data.book_author2+"</td>";
+            tablestring += "<td><input type='date' class='form-control' onload=getDate(); id='issue_date'></td>";
+            tablestring += "<td><input type='date' class='form-control' id='expected_return_date'></td>";
+            tablestring += "<td><button type='button' class='btn btn-warning btn-sm' title='Add' book_id='"+data.book_id+"' data_length='"+data.length+"' book_accn='"+data.item_accn+"' onclick='issue_this_book(this);' data-toggle='modal' data-target='#myModal22'><i class='fa fa-tasks pluss'></i>Issue</button></td>";
+            tablestring += "</tr>";            
+            $("#book_issue_data").html(tablestring);
+        },
+    });
+});
+function getDate(){
+    let date = new Date().toDateString();  
+    document.querySelector('#issue_date').textContent=date; 
+}
+
+function issue_this_book(obj){
+    var book_id = $(obj).attr('book_id');
+    var book_accn = $(obj).attr('book_accn');
+    var student_id = $('#userid').val();
+    console.log('student id:'+student_id);
+    var data_length = $(obj).attr('data_length');
+    var issue_date = $('#issue_date').val();
+    console.log(issue_date);
+    var expected_return_date = $('#expected_return_date').val();
+    console.log(expected_return_date);
+
+    $.ajax({
+        url : "/issue_this_book/",
+        data: {
+            'book_id':book_id,
+            'book_accn':book_accn,
+            'student_id':student_id,
+            'data_length':data_length,
+            'issue_date':issue_date,
+            'expected_return_date':expected_return_date,
+        },
+        type : "GET",
+        dataType: 'json',
+        success:function(data){
+            if(data.user === 1){
+                    alert('successfullu issued book to student');
+                    location.reload(); 
+                }else{
+                    alert('<b>Unsuccessfull</b>');
+                } 
+        },
+    });
+   
+}
+
+$("#student_button").on('click',function(){
+    var item = $('#userid').val();
+    $.ajax({
+        url : "/get_student_book_list/",
+        data: {
+            'student_id':item,
+        },
+        type : "GET",
+        dataType: 'json',
+        success : function(data){
+            console.log(data.length);
+            console.log("case here");
+            $('#dynamic-table1').show();
+            $('#accession_num_enter').show();
+            tablestring = "";           
+            if(data.length === 0) {
+                    tablestring = "<tr><td></td><td><td></td></td><td></td><td>No Books Issued Yet.</td><td></td><td></td><td></td></tr>";
+                }
+            else{
+                    ids = "";
+                    for(var i=0; i<data.length; i++)
+                    {                       
+                        // $("book_return_date").datepicker().datepicker('setDate', new Date());
+                        tablestring += "<tr>";
+                        tablestring += "<td>"+data[i].book_id+"</td>";
+                        tablestring += "<td>"+data[i].book_accn_no+"</td>";
+                        tablestring += "<td>"+data[i].book_name+"</td>";
+                        tablestring += "<td>"+data[i].book_issue_date+"</td>";
+                        tablestring += "<td>"+data[i].book_expected_return_date+"</td>";
+                        tablestring += "<td><input type='date' class='form-control' id='book_return_date'"+data[i].book_id+"></td>";
+                        tablestring += "<td><input type='text' class='form-control' id='book_fine_amount'"+data[i].book_id+" value="+data[i].book_fine_amount+"></td>";
+                        tablestring += "<td><button type='button' class='btn btn-warning btn-sm' title='Add' book_id='"+data[i].book_name_id+"' data_length='"+data.length+"' book_accn='"+data[i].book_accn_no+"' student_id='"+data[i].student_id+"' onclick='return_this_book(this);' data-toggle='modal' data-target='#myModal22'><i class='fa fa-tasks pluss'></i>Return</button></td>";
+                        tablestring += "</tr>";
+                        var fine_date = '#book_return_date'+data[i].book_id;
+                        console.log(fine_date);
+                        ids += data[i].book_id;                        
+                        console.log("the values of i now is:"+data.length);
+                        
+                    }                
+            }
+            $("#book_histrory_data").html(tablestring);
+        },   
+    });
+});
+
+function return_this_book(obj){
+    var book_id = $(obj).attr('book_id');
+    var book_accn = $(obj).attr('book_accn');
+    var student_id = $(obj).attr('student_id');
+    var data_length = $(obj).attr('data_length');
+    console.log('book_id:'+book_id);
+    console.log('book_accn:'+book_accn);
+    console.log('student:'+student_id);
+    console.log('data_length:'+data_length);
+
+    $.ajax({
+            type:'GET',
+            url:'/return_this_book/',
+            data:{
+            'book_accn': book_accn,
+            'book_id': book_id,
+            'student_id':student_id,
+            'data_length':data_length,
+            },
+            success:function(data){
+                if(data.next_user_obj ===1){
+                    alert('successfullu returned book to library');
+                    location.reload(); 
+                }else{
+                    alert('<b>Unsuccessfull</b>');
+                }
+                
+            },
+        });
+    
+
+}
+
+    // function getStudentBook(item){
+        
+    // }
+// $(document).ready(function()
+//         {
+//         $("#item_accn").autocomplete({
+//             minLength: 2,        
+//             source: function( request, response )
+//             {             
+//                 $.ajax(
+//                     {
+//                     url: "/autocompletesearchbooksbyaccn/",
+//                     data: {
+//                         term: request.term,
+//                         },      
+//                     type: "POST",  // a jQuery ajax POST transmits in querystring format in utf-8
+//                     dataType: "json",   //return data in json format
+//                     success: function( data )
+//                         {
+//                             response( $.map( data, function( item )
+//                             {  
+//                                 return{
+//                                         label: item.name,
+//                                         value: item.id + "-" + item.name
+//                                     }                                
+//                             }));                        
+//                         }
+//                     });               
+//                 },
+//             select: function(event, ui){
+//                 getBookByAccn(ui.item.value);
+//             }  
+//         });
+//     });
+
+    // function getBookByAccn(item){
+    //     $.ajax({
+    //         url : "/get_book_list/",
+    //         data: {
+    //             'accn_no':item,
+    //         },
+    //         type : "GET",
+    //         success : function(data){
+    //             console.log("case here");
+    //             tablestring = "";
+
+                
+    //         },
+    //     });
+    // }
+</script>
+
+
+{% endblock content %}

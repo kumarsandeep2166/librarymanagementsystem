@@ -1,0 +1,727 @@
+﻿{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<script>
+        document.getElementById("stt").className += " active";
+        document.getElementById("stm1").className += " active";
+        document.getElementById("stm02").className += " active";
+ </script>
+ <style>
+     #stm02 a{
+         color:#fff !important;
+     }
+ </style>
+        <section id="main-content">
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="htgt text-center">
+                            Student Admission Form
+                        </h1>
+                        <div class="col-sm-10 col-xs-12 col-sm-offset-1">
+                            <div class="panel-body">
+                                <form role="form" class="stfrmdt1" action="{% url 'student_create' %}" method="POST" enctype="multipart/form-data"  id="myadmissionForm">
+                                    {% csrf_token %}
+                                    <div class="col-sm-10 col-xs-12 col-sm-offset-1">
+                                            
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                              <!--   <div class="row clrbg col-sm-9">
+                                                    <div class="subhdrt">
+                                                        <h2>Enrollment Details</h2>
+                                                    </div>
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label>Enrollment Date</label>
+                                                        <input type="text" class="form-control" placeholder="Enrollment Date">
+                                                    </div>
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label>Addmission No.</label>
+                                                        <input type="text" class="form-control" placeholder="Addmission No.">
+                                                    </div>
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label>Admission Date</label>
+                                                        <input type="text" class="form-control" placeholder="Admission Date">
+                                                    </div>
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label>Course</label>
+                                                        <input type="text" class="form-control" placeholder="Course">
+                                                    </div>
+                                                </div> --> 
+                                                    <div class="clrbg col-sm-9">
+                                                        <div class="row">
+                                                            <div class="subhdrt">
+                                                                <h2>Student Details Form</h2>
+                                                            </div>
+                                                            <div class="form-group col-sm-12 col-xs-12">
+                                                                <label class="control-label">Name:</label>
+                                                                <div>
+                                                                    <input type="text" class="form-control" name="first_name">
+                                                                </div>
+                                                            </div>                                                            
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-4 col-xs-12">                                                       
+                                                                <label class="control-label">Date Of Birth:</label>
+                                                                <div>
+                                                                    <input type="date" class="form-control" name="dob">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-sm-4 col-xs-12">                                                       
+                                                                <label class="control-label">Phone Number:</label>
+                                                                <div>
+                                                                    <input type="text" class="form-control" name="contact">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-sm-4 col-xs-12">                                                       
+                                                                <label class="control-label">Email:</label>
+                                                                <div>
+                                                                    <input type="text" class="form-control" name="email">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="row">                                                           
+                                                            <div class="form-group col-sm-3 col-xs-12">                                                       
+                                                                <label class="control-label">Blood Group:</label>
+                                                                <div>
+                                                                    <select name="bgroup" id="" class="form-control">
+                                                                        <option value="O +ve">O +ve</option>
+                                                                        <option value="O -ve">O -ve</option>
+                                                                        <option value="A +ve">A +ve</option>
+                                                                        <option value="A -ve">A -ve</option>
+                                                                        <option value="B +ve">B +ve</option>
+                                                                        <option value="B -ve">B -ve</option>
+                                                                        <option value="AB +ve">AB +ve</option>
+                                                                        <option value="AB -ve">AB -ve</option>
+                                                                    </select>                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-sm-3 col-xs-12">
+                                                                <label class="control-label">Nationality:</label>
+                                                                <div>
+                                                                    <select name="nationality" id="" class="form-control">
+                                                                        <option value="indian">Indian</option>
+                                                                        <option value="other">other</option>
+                                                                        
+                                                                    </select>                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-sm-3 col-xs-12">
+                                                                <label class="control-label">Caste:</label>
+                                                                <div>
+                                                                    <select name="caste" id="" class="form-control">
+                                                                        <option value="SC">SC</option>
+                                                                        <option value="ST">ST</option>
+                                                                        <option value="General">General</option>
+                                                                        <option value="OBC">OBC</option>
+                                                                    </select>                                                                    
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="form-group col-sm-3 col-xs-12">
+                                                                <label class="control-label">Aadhar Number:</label>
+                                                                <div>
+                                                                    <input type="text" class="form-control" name="aadhar_num">                                                                 
+                                                                </div>                                                                
+                                                            </div>
+                                                            <div class="form-group col-sm-3 col-xs-12">
+                                                                <label class="control-label">Gender:</label>
+                                                                <div>
+                                                                    <select name="gender" id="" class="form-control">
+                                                                        <option value="Male">Male</option>
+                                                                        <option value="Female">Female</option>                                                                        
+                                                                    </select>                                                                    
+                                                                </div>                                                              
+                                                            </div>                                                      
+                                                        </div>
+                                                </div>
+                                                <div class="form-group col-sm-3 col-xs-12">
+                                                    <div class="file-upload">
+                                                        <div class="image-upload-wrap">
+                                                            <!-- <input class="clearablefileinput" type="file" onchange="readURL(this);" accept="image/*"> -->
+                                                            <input type="file"  class="form-control" name="stu_image">
+                                                            <div class="drag-text">
+                                                                <h3>Upload Recent Passport size Photo</h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="file-upload-content">
+                                                            <img class="file-upload-image" src="#" alt="your image">
+                                                            <div class="image-title-wrap">
+                                                                <button type="button" onclick="removeUpload()" class="remove-image">Remove </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="clrbg">
+                                                <div class="row">
+                                                    <div class="subhdrt">
+                                                        <h2>Parents Details</h2>
+                                                    </div>
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label class="control-label">Father's Name:</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="fathersname">                                                                 
+                                                        </div> 
+                                                    </div>
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label class="control-label">Father's Occupation:</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="fatheroccupation">                                                                 
+                                                        </div> 
+                                                    </div>
+                                                    
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label class="control-label">Father's Contact:</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="fcontact">                                                                 
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label class="control-label">Father's Email:</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="femail">                                                                 
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label class="control-label">Mother's Name:</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="mname">                                                                 
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label class="control-label">Mother's Occupation:</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="moccupation">                                                                 
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label class="control-label">Mother's Contact:</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="mcontact">                                                                 
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label class="control-label">Mother's Email:</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="memail">                                                                 
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row clrbg">
+                                                <div class="subhdrt">
+                                                    <h2>Educational Details</h2>
+                                                </div>
+                                                <div class="col-sm-12 col-xs-12" style="overflow-x: auto;">
+                                                    <table class="table table-bordered table-striped table-responsive cf">
+                                                        <thead class="cf">
+                                                            <tr class="dth">
+                                                                <th>Exam</th>
+                                                                <th>Stream</th>
+                                                                <th>School/College</th>
+                                                                <th>Board/University</th>
+                                                                <th>Full Mark</th>
+                                                                <th>Secured Mark</th>
+                                                                <th>% / CGPA</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>10th</td>
+                                                                <td><input type="text" class="form-control" name="tenthstream"></td>
+                                                                <td><input type="text" class="form-control" name="tenthschool"></td>
+                                                                <td><input type="text" class="form-control" name="tenthboard"></td>
+                                                                <td><input type="text" class="form-control" name="tenthfullmark"></td>
+                                                                <td><input type="text" class="form-control" name="tenthsecuredmark"></td>
+                                                                <td><input type="text" class="form-control" name="tenthpercentage"></td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td>+2</td>
+                                                                <td><input type="text" class="form-control" name="twelthstream"></td>
+                                                                <td><input type="text" class="form-control" name="twelthschool"></td>
+                                                                <td><input type="text" class="form-control" name="twelthboard"></td>                                                                
+                                                                <td><input type="text" class="form-control" name="twelthfullmark"></td>
+                                                                <td><input type="text" class="form-control" name="twelthsecuredmark"></td>
+                                                                <td><input type="text" class="form-control" name="twelthpercentage"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Graduate</td>
+                                                                <td><input type="text" class="form-control" name="graduatestream"></td>
+                                                                <td><input type="text" class="form-control" name="graduateschool"></td>
+                                                                <td><input type="text" class="form-control" name="graduateboard"></td>
+                                                                <td><input type="text" class="form-control" name="graduatefullmark"></td>
+                                                                <td><input type="text" class="form-control" name="graduatesecuredmark"></td>
+                                                                <td><input type="text" class="form-control" name="graduatepercentage"></td>
+                                                            </tr>                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="row clrbg">
+                                                <div class="subhdrt">
+                                                    <h2>Entrance Details</h2>
+                                                </div> -->
+                                                <!-- <div class="col-sm-12 col-xs-12">
+                                                    <table class="table table-bordered table-striped cf">
+                                                        <thead class="cf">
+                                                            <tr class="dth">
+                                                                <th>Entrance</th>
+                                                                <th>Year of Entrance</th>
+                                                                <th>Score</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><input type="text" class="form-control" name="entname"></td>
+                                                                <td class="numeric"><input type="text" class="form-control" name="entyear"></td>
+                                                                <td class="numeric"><input type="text" class="form-control" name="entscore"></td>
+                                                            </tr>                                                                                                                         
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div> -->
+                                            <div class="row clrbg">
+                                                    <div class="subhdrt">
+                                                        <h2>Course Details</h2>
+                                                    </div>
+                                                    <div class="col-sm-12 col-xs-12">
+                                                        <table class="table table-bordered table-striped cf">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <label for="">Stream</label>
+                                                                        <select name="stream" id="" class="form-control">
+                                                                            {% for st in stream_queryset %}
+                                                                            <option value="{{st.id}}">{{st.name}}</option>
+                                                                             {% endfor %}                                                                       
+                                                                        </select>  
+                                                                        
+                                                                    </td>                                                                 
+                                                                    <td>
+                                                                        <label for="">Course</label>
+                                                                        <select name="course" id="" class="form-control">
+                                                                            {% for st in course_queryset %}
+                                                                            <option value="{{st.id}}">{{st.name}}</option>
+                                                                            {% endfor %}                                                                       
+                                                                        </select> 
+                                                                    </td>
+                                                                    <td>
+                                                                        <label for="">Semester</label>
+                                                                        <select name="year_sem" id="" class="form-control">
+                                                                            {% for st in year_sem %}
+                                                                            <option value="{{st.id}}">{{st.name}}</option>
+                                                                            {% endfor %}                                                                       
+                                                                        </select> 
+                                                                    </td>
+                                                                </tr>                                                                                                                         
+                                                                
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div> 
+                                                <!-- <div class="row clrbg">
+                                                        <div class="subhdrt">
+                                                            <h2>Contact Details</h2>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="row subhdrt2">
+                                                                <h2>Permanent Address</h2>
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>House/Plot/At</label>
+                                                                <input type="text" class="form-control" placeholder="House/Plot/At" id="text1">
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>City</label>
+                                                                <select class="form-control" id="permanentcity">
+                                                                    <option>-----Select City-----</option>
+                                                                    <option value="City1">City1</option>
+                                                                    <option value="City2">City2</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>Post</label>
+                                                                <input type="text" class="form-control" placeholder="Post" id="text11">
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>District</label>
+                                                                <select class="form-control" id="permanentdist">
+                                                                    <option>-----Select District-----</option>
+                                                                    <option value="Dist1">Dist1</option>
+                                                                    <option value="Dist2">Dist2</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>State</label>
+                                                                <select class="form-control" id="permanentstate">
+                                                                    <option>-----Select State-----</option>
+                                                                    <option value="State1">State1</option>
+                                                                    <option value="State2">State2</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>Pin Code</label>
+                                                                <input type="text" class="form-control" placeholder="Pin" id="text31">
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>Country</label>
+                                                                <select class="form-control" id="permanentcountry">
+                                                                    <option>-----Select Country-----</option>
+                                                                    <option value="Country1">Country1</option>
+                                                                    <option value="Country2">Country2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="row subhdrt2">
+                                                                <h2>Present Address</h2>
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>House/Plot/At</label>
+                                                                <input type="text" class="form-control" placeholder="House/Plot/At" id="text2">
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>City</label>
+                                                                <select class="form-control" id="presentcity">
+                                                                    <option>-----Select City-----</option>
+                                                                    <option value="City1">City1</option>
+                                                                    <option value="City2">City2</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>Post</label>
+                                                                <input type="text" class="form-control" placeholder="Post" id="text22">
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>District</label>
+                                                                <select class="form-control" id="presentdist">
+                                                                    <option>-----Select District-----</option>
+                                                                    <option value="Dist1">Dist1</option>
+                                                                    <option value="Dist2">Dist2</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>State</label>
+                                                                <select class="form-control" id="presentstate">
+                                                                    <option>-----Select State-----</option>
+                                                                    <option value="State1">State1</option>
+                                                                    <option value="State2">State2</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>Pin Code</label>
+                                                                <input type="text" class="form-control" placeholder="Pin" id="text33">
+                                                            </div>
+                                                            <div class="form-group col-sm-6 col-xs-12">
+                                                                <label>Country</label>
+                                                                <select class="form-control" id="presentcountry">
+                                                                    <option>-----Select Country-----</option>
+                                                                    <option value="Country1">Country1</option>
+                                                                    <option value="Country2">Country2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-xs-12 mngtop30">
+                                                            <label class="contnr">
+                                                                Check this box if Permanent Address and Present Address are the same.
+                                                                <input type="checkbox" id="checkbox1">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div> --> 
+                                            
+
+                                            <!-- <div class="row clrbg bsil atchpd">
+                                                <div class="subhdrt">
+                                                    <h2>Attachment Details</h2>
+                                                </div>
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <table class="table table-bordered table-striped cf">
+                                                        <thead class="cf">
+                                                            <tr class="dth">
+                                                                <th>Exam</th>
+                                                                <th>Certificate</th>
+                                                                <th>Marksheet</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>10th</td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.student_tenth}}
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.tenth_marksheet}}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>+2</td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.student_twelth}}
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.tewlth_marksheet}}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Degree</td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.student_degree}}
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.degree_marksheet}}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>ClC of Last Exam</td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.student_clc}}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Conduct of last Exam</td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.student_conduct_certificate}}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Migration</td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.student_migration}}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Birth Certificate</td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.student_birth_certificate}}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                           <tr>
+                                                                <td>Medical Certificate</td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.present_same_address}}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Address</td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.student_address}}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Thumb</td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.student_thumb}}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Signature</td>
+                                                                <td>
+                                                                    <div class="form-group">
+                                                                            {{ form.student_signature}}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div> -->
+
+                                            
+                                        </div>
+                                    </div>
+                                    <button type="reset" class="btn btn-info cancel">Cancel</button>
+                                    <button type="submit" class="btn btn-info save">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!--js-->
+    <script src="{% static 'js/jquery.dcjqaccordion.2.7.js' %}"></script>
+    <script src="{% static 'js/jquery.nicescroll.js' %}"></script>
+    <!--common_script-->
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <!-- image_upload -->
+    <script>
+         function readURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
+
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+        }
+
+        function removeUpload() {
+            $('.clearablefileinput').replaceWith($('.clearablefileinput').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
+    </script>
+    
+   <script>
+    $(document).ready(function () {
+        $("#id_present_same_address").on("change", function () {
+            if (this.checked) {
+                $("#id_permanent_house_no").val($("#id_present_house_no").val());
+                $("#id_permanent_Lane").val($("#id_present_Lane").val());
+                $("#id_permanent_pin").val($("#id_present_pin").val());
+
+            } else {
+                $('#id_permanent_house_no').val("");
+                $('#id_permanent_Lane').val("");
+                $('#id_permanent_pin').val("");
+            }
+        });
+    });
+
+
+    $('#id_present_same_address').click(function (e) {
+        if ($('#id_present_same_address').prop('checked')) {
+            $('#id_permanent_district').val($('#id_present_district option:selected').val())
+        }
+    });
+
+    $('#id_present_same_address').click(function (e) {
+        if ($('#id_present_same_address').prop('checked')) {
+            $('#id_permanent_state').val($('#id_present_state option:selected').val())
+        }
+    });
+
+    $('#id_present_same_address').click(function (e) {
+        if ($('#id_present_same_address').prop('checked')) {
+            $('#id_permanent_country').val($('#id_present_country option:selected').val())
+        }
+    });
+</script>
+<script type="text/javascript">
+    $("#id_stream").change(function(event){
+                event.preventDefault();
+                var url=$("#myadmissionForm").attr("data-course-url");
+                var stream_id=$(this).val();
+                $.ajax({
+                    url:url,
+                data:{
+                    'stream':stream_id,
+                },
+                success:function(data){
+                    $("#id_course").html(data);
+                }
+                });
+    
+            });
+        $("#id_course").change(function(event){
+            event.preventDefault();
+            var url=$("#myadmissionForm").attr("data-batch-url");
+            var course_id=$(this).val();
+            $.ajax({
+                url:url,
+            data:{
+                'course':course_id,
+            },
+            success:function(data){
+                $("#id_batch").html(data);
+            }
+            });      
+    });
+    </script>
+    <script>
+            $(document).ready(function () {
+                $("#checkbox1").on("change", function () {
+                    if (this.checked) {
+                        $("#text2").val($("#text1").val());
+                        $("#text22").val($("#text11").val());
+                        $("#text33").val($("#text31").val());
+    
+                    } else {
+                        $('#text2').val("");
+                        $('#text22').val("");
+                        $('#text33').val("");
+                    }
+                });
+            });
+    
+    
+            $('#checkbox1').click(function (e) {
+                if ($('#checkbox1').prop('checked')) {
+                    $('#presentcity').val($('#permanentcity option:selected').val())
+                }
+            });
+    
+            $('#checkbox1').click(function (e) {
+                if ($('#checkbox1').prop('checked')) {
+                    $('#presentdist').val($('#permanentdist option:selected').val())
+                }
+            });
+    
+            $('#checkbox1').click(function (e) {
+                if ($('#checkbox1').prop('checked')) {
+                    $('#presentstate').val($('#permanentstate option:selected').val())
+                }
+            });
+    
+            $('#checkbox1').click(function (e) {
+                if ($('#checkbox1').prop('checked')) {
+                    $('#presentcountry').val($('#permanentcountry option:selected').val())
+                }
+            });
+        </script>
+{% endblock content %}

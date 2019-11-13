@@ -1,0 +1,89 @@
+﻿{% extends 'dashboard/base.html' %}
+{% block content %}
+<section id="main-content" class="mndshbord">
+    <div class="wrapper">
+        <!--<div class="dshbrdbg">
+            <h1>Welcome to Dashboard</h1>
+        </div>-->
+        <h1 class="hdr">
+            Current Session(2017-18)
+        </h1>
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-darkblue clearfix">
+                    <span class="info-box-icon bg-transparent"><i class="ti-stats-up text-white"></i></span>
+                    <h6 class="info-box-text text-white">Over Due</h6>
+                    <div class="info-box-content col-sm-6 col-xs-12">
+                        <h1 class="text-white">2,089</h1>
+                        <span class="progress-description text-white">More Than 30 Days </span>
+                    </div>
+                    <div class="info-box-content col-sm-6 col-xs-12">
+                        <h1 class="text-white">32</h1>
+                        <span class="progress-description text-white">Less Than 30 Days </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-green text-white clearfix">
+                    <span class="info-box-icon bg-transparent"><i class="ti-face-smile"></i></span>
+                    <h6 class="info-box-text text-white">Purchase Detail</h6>
+                    <div class="info-box-content col-sm-6 col-xs-12">
+                        <h1 class="text-white">0 /-</h1>
+                        <span class="progress-description text-white"> <i class="fa fa-inr"></i> 2016-17 </span>
+                    </div>
+                    <div class="info-box-content col-sm-6 col-xs-12">
+                        <h1 class="text-white">117547.08 /-</h1>
+                        <span class="progress-description text-white"> <i class="fa fa-inr"></i> 2017-18 </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-aqua clearfix">
+                    <span class="info-box-icon bg-transparent"><i class="ti-bar-chart"></i></span>
+                    <h6 class="info-box-text text-white">Average Transaction/Month</h6>
+                    <div class="info-box-content col-sm-6 col-xs-12">
+                        <h1 class="text-white">2816</h1>
+                        <span class="progress-description text-white"> 2017-18</span>
+                    </div>
+                    <div class="info-box-content  col-sm-6 col-xs-12">
+                        <h1 class="text-white">0</h1>
+                        <span class="progress-description text-white"> 2016-17</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange clearfix">
+                    <span class="info-box-icon bg-transparent"><i class="ti-money"></i></span>
+                    <h6 class="info-box-text text-white">Issue Analysis</h6>
+                    <div class="info-box-content col-sm-6 col-xs-12">
+                        <h1 class="text-white">9256</h1>
+                        <span class="progress-description text-white"> Not Issued Since 6 Month</span>
+                    </div>
+                    <div class="info-box-content col-sm-6 col-xs-12">
+                        <h1 class="text-white">8071</h1>
+                        <span class="progress-description text-white"> Not Issued Since 1 Year</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-red clearfix">
+                    <span class="info-box-icon bg-transparent"><i class="ti-money"></i></span>
+                    <h6 class="info-box-text text-white">Utilisation Analysis</h6>
+                    <div class="info-box-content col-sm-4 col-xs-12">
+                        <h1 class="text-white">486</h1>
+                        <span class="progress-description text-white"> 100%</span>
+                    </div>
+                    <div class="info-box-content col-sm-4 col-xs-12">
+                        <h1 class="text-white">162</h1>
+                        <span class="progress-description text-white"> 50 To 100%</span>
+                    </div>
+                    <div class="info-box-content col-sm-4 col-xs-12">
+                        <h1 class="text-white">8608</h1>
+                        <span class="progress-description text-white"> 0 To 50%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
