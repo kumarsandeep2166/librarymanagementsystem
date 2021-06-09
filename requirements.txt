@@ -1,4 +1,4 @@
-Django==2.2.5
+Django==2.2.22
 django-crispy-forms==1.7.2
 django-scheduler==0.9.0
 holidays==0.9.11
