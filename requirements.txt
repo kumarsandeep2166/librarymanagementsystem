@@ -7,7 +7,7 @@ icalendar==4.0.3
 mysql-connector==2.2.9
 mysql-connector-python==8.0.17
 mysqlclient==1.4.4
-numpy==1.17.2
+numpy==1.22.0
 pdfkit==0.6.1
 Pillow==6.1.0
 protobuf==3.9.1
